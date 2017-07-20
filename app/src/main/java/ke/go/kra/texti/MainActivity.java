@@ -1,10 +1,14 @@
 package ke.go.kra.texti;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+
+import com.github.clans.fab.FloatingActionButton;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -18,12 +22,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final ArrayList<Group> groups_list = new ArrayList<>();
+        ArrayList<Group> groups_list = new ArrayList<>();
         ListView lv = (ListView) findViewById(R.id.main_list_view);
 
         ArrayAdapter<Group> groups_adapter = new ArrayAdapter<Group>(this, android.R.layout.simple_list_item_1, groups_list);
         lv.setAdapter(groups_adapter);
 
+        groups_list = dbHelper.getAllContacts();
+
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_add_group);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, NewGroupActivity.class));
+            }
+        });
 
 //        Spinner spinner = (Spinner) findViewById(R.id.planet_spinner);
 //// Create an ArrayAdapter using the string array and a default spinner layout
