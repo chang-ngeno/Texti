@@ -3,6 +3,7 @@ package ke.go.kra.texti;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 //Delete the Item Long pressed
                 dbHelper.deleteContact(groups_list.get(position).getId());
-                Toast.makeText(MainActivity.this, "" + groups_list.get(position).getId(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(MainActivity.this, "" + groups_list.get(position).getId(), Toast.LENGTH_LONG).show();
                 groups_adapter.notifyDataSetChanged();
 
                 //Refresh the array list
@@ -60,12 +61,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent_new_message = new Intent(MainActivity.this, AddContactToGroupActivity.class);
+                //Intent intent_new_message =
                 //intent_new_message.putExtra("name",name);
 
-                startActivity(intent_new_message);
+
+                startActivity(new Intent(MainActivity.this, SendTextActivity.class));
             }
         });
+
 
 //        Spinner spinner = (Spinner) findViewById(R.id.planet_spinner);
 //// Create an ArrayAdapter using the string array and a default spinner layout

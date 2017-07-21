@@ -26,6 +26,9 @@
         <activity android:name=".AddContactToGroupActivity">
 
         </activity>
+        <activity android:name=".SendTextActivity">
+
+        </activity>
     </application>
 
 </manifest>
