@@ -41,21 +41,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                //Delete the Item Long pressed
-                dbHelper.deleteContact(groups_list.get(position).getId());
-                //Toast.makeText(MainActivity.this, "" + groups_list.get(position).getId(), Toast.LENGTH_LONG).show();
-                groups_adapter.notifyDataSetChanged();
-
-                //Refresh the array list
-                groups_list = dbHelper.getAllContacts();
-                ArrayAdapter<Group> planet_adapter = new ArrayAdapter<Group>(MainActivity.this, android.R.layout.simple_list_item_1, groups_list);
-                lv.setAdapter(planet_adapter);
-                return false;
-            }
-        });
+//        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+//            @Override
+//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//                startActivity(new Intent(MainActivity.this,AddContactToGroupActivity.class));
+////                //Delete the Item Long pressed
+////                dbHelper.deleteContact(groups_list.get(position).getId());
+////                //Toast.makeText(MainActivity.this, "" + groups_list.get(position).getId(), Toast.LENGTH_LONG).show();
+////                groups_adapter.notifyDataSetChanged();
+////
+////                //Refresh the array list
+////                groups_list = dbHelper.getAllContacts();
+////                ArrayAdapter<Group> planet_adapter = new ArrayAdapter<Group>(MainActivity.this, android.R.layout.simple_list_item_1, groups_list);
+////                lv.setAdapter(planet_adapter);
+//                return false;
+//            }
+//        });
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 //intent_new_message.putExtra("name",name);
 
 
-                startActivity(new Intent(MainActivity.this, SendTextActivity.class));
+                startActivity(new Intent(MainActivity.this, SendSmsActivity.class));
             }
         });
 

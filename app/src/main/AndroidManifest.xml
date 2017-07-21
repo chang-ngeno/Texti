@@ -3,6 +3,7 @@
     package="ke.go.kra.texti">
 
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
@@ -26,7 +27,7 @@
         <activity android:name=".AddContactToGroupActivity">
 
         </activity>
-        <activity android:name=".SendTextActivity">
+        <activity android:name=".SendSmsActivity">
 
         </activity>
     </application>
