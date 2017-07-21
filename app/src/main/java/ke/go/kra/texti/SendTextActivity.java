@@ -1,11 +1,13 @@
 package ke.go.kra.texti;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,19 +16,29 @@ import android.Manifest;
 
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SendTextActivity extends Activity {
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 0;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_text);
 
+        Bundle group_name = getIntent().getExtras();
+        String group = group_name.getString("name");
+
+        TextView page_heading = (TextView) findViewById(R.id.txtPageHeading);
+        page_heading.setText(group);
+        Log.i("Group Selected", group);
+
 
         Button btn_send_text = (Button) findViewById(R.id.btnSendText);
         final EditText text_message = (EditText) findViewById(R.id.editMessageText);
+
 
         btn_send_text.setOnClickListener(new View.OnClickListener() {
             @Override

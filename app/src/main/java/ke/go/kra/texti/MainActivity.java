@@ -25,9 +25,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         final ListView lv = (ListView) findViewById(R.id.main_list_view);
+        lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         groups_list = dbHelper.getAllContacts();
 
-        final ArrayAdapter<Group> groups_adapter = new ArrayAdapter<Group>(this, android.R.layout.simple_list_item_1, groups_list);
+        final ArrayAdapter<Group> groups_adapter = new ArrayAdapter<Group>(this, android.R.layout.simple_list_item_multiple_choice, groups_list);
         lv.setAdapter(groups_adapter);
 
 
@@ -59,15 +60,15 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
+
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                //Intent intent_new_message =
-                //intent_new_message.putExtra("name",name);
+                Intent intent_new_message = new Intent(MainActivity.this, SendSmsActivity.class);
+                intent_new_message.putExtra("name", groups_list.get(position).getName().toString());
 
-
-                startActivity(new Intent(MainActivity.this, SendSmsActivity.class));
+                startActivity(intent_new_message);
             }
         });
 

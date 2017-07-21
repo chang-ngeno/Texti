@@ -30,6 +30,7 @@ public class NewGroupActivity extends Activity {
                     dbHelper.insertContact(name);
                     Toast.makeText(NewGroupActivity.this, "Group Created", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(NewGroupActivity.this, MainActivity.class));
+                    dbHelper.close();
                 } else {
                     Toast.makeText(NewGroupActivity.this, "Name is empty", Toast.LENGTH_LONG).show();
                 }
